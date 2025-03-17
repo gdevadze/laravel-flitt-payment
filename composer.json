@@ -1,0 +1,32 @@
+{
+    "name": "devadze/laravel-flitt-payment",
+    "description": "A Laravel package for Flitt Payment API integration",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Devadze\\FlittPayment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "გიო",
+            "email": "giodevadze01@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "illuminate/support": "^9.0|^10.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Devadze\\FlittPayment\\FlittServiceProvider"
+            ],
+            "aliases": {
+                "FlittPayment": "Devadze\\FlittPayment\\Facades\\FlittPayment"
+            }
+        }
+    }
+}
