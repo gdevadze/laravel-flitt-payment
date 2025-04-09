@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('flitt_payment_transactions', function (Blueprint $table) {
             $table->id();
-            $table->morphs('model')->nullable();
+            $table->integer('model_id')->unsigned()->nullable();
+            $table->string('model_type')->nullable();
             $table->string('locale');
             $table->double('amount');
             $table->string('payment_id');

@@ -69,7 +69,7 @@ trait BuildPayment
     protected function logTransactionCreate(array $data)
     {
         FlittPaymentTransaction::create([
-            'locale' => 'ka',
+            'locale' => config('flitt.lang'),
             'model_id' => $this->model_id ?? null,
             'model_type' => $this->model_type ?? null,
             'amount' => $this->payload['amount'] / 100,
