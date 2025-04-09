@@ -5,23 +5,24 @@ namespace Devadze\FlittPayment\Traits;
 trait SignatureGenerator
 {
     const SIGNATURE_SEPARATOR = '|';
-    public function generateSignature($data, $password, $encoded = true): string
+    public function generateSignature($params, $encoded = true): string
     {
-        $data = array_filter($data, function($var) {
-            return $var !== '' && $var !== null;
-        });
+        $data = array_filter($params,
+            function ($var) {
+                return $var !== '' && $var !== null;
+            });
         ksort($data);
-
-        $str = $password;
+        $sign_str = config('flitt.secret_key');
         foreach ($data as $k => $v) {
-            $str .= self::SIGNATURE_SEPARATOR . $v;
+            $sign_str .= self::SIGNATURE_SEPARATOR . $v;
+        }
+        if ($encoded) {
+            $signature = sha1($sign_str);
+        } else {
+            $signature = $sign_str;
         }
 
-        if ($encoded) {
-            return sha1($str);
-        } else {
-            return $str;
-        }
+        return $signature;
     }
 
 

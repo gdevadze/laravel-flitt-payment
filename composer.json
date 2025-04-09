@@ -10,7 +10,7 @@
     },
     "authors": [
         {
-            "name": "გიო",
+            "name": "Gio Devadze",
             "email": "giodevadze01@gmail.com"
         }
     ],
@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Devadze\\FlittPayment\\FlittServiceProvider"
+                "Devadze\\FlittPayment\\FlittPaymentServiceProvider"
             ],
             "aliases": {
                 "FlittPayment": "Devadze\\FlittPayment\\Facades\\FlittPayment"
