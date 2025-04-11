@@ -36,6 +36,11 @@ Once published, the configuration file will be available at:
 config/flitt.php
 ```
 
+And run migrations:
+```bash
+php artisan migrate
+```
+
 ## Environment Variables
 Add the following variables to your `.env` file to configure the package:
 
