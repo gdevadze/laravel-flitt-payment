@@ -8,14 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 trait BuildPayment
 {
     protected array $payload;
+    protected bool $orderIdManuallySet = false;
+
     protected $model_id = null;
     protected $model_type = '';
 
     public function resetPayload($data = null): void
     {
+        $autoGenerate = config('flitt.auto_order_id');
+
+        if ($autoGenerate) {
+            $orderId = uniqid('flitt_', true);
+        } else {
+            $orderId = $this->payload['order_id'] ?? null;
+        }
+
         $this->payload = $data ?? [
             'merchant_id' => config('flitt.merchant_id'),
             'currency' => config('flitt.currency'),
+            'order_id' => $orderId,
             'server_callback_url' => config('flitt.callback_url'),
             'response_url' => config('flitt.response_url'),
             'lang' => config('flitt.lang'),
@@ -33,6 +44,7 @@ trait BuildPayment
     public function setOrderId(string $orderId): self
     {
         $this->payload['order_id'] = $orderId;
+        $this->orderIdManuallySet = true;
         return $this;
     }
 
