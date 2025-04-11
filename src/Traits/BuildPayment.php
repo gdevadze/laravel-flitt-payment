@@ -87,7 +87,7 @@ trait BuildPayment
             'amount' => $this->payload['amount'] / 100,
             'status' => 'created',
             'payment_id' => $data['payment_id'],
-            'order_id' => $data['order_id'] ?? null
+            'order_id' => $this->payload['order_id'] ?? null
         ]);
     }
 }
