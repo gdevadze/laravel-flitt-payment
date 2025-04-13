@@ -54,6 +54,12 @@ trait BuildPayment
         return $this;
     }
 
+    public function setResponseUrl(string $url): self
+    {
+        $this->payload['response_url'] = $url;
+        return $this;
+    }
+
     public function setCurrency(string $currency = 'GEL'): self
     {
         $supportedCurrencies = ['GEL', 'USD', 'EUR'];
