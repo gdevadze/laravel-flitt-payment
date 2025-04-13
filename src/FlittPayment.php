@@ -27,7 +27,7 @@ class FlittPayment extends ApiRequest implements PaymentGatewayContract
                 'payment_id' => $response['response']['payment_id']
             ]);
             $this->resetPayload();
-            return redirect($response['response']['checkout_url']);
+            return $response['response'];
         }
 
         return $response;
@@ -43,7 +43,7 @@ class FlittPayment extends ApiRequest implements PaymentGatewayContract
                 'payment_id' => $response['response']['payment_id'] ?? null
             ]);
             $this->resetPayload();
-            return $response['response']['token'];
+            return $response['response'];
         }
 
         return $response;
