@@ -46,7 +46,7 @@ Add the following variables to your `.env` file to configure the package:
 
 ```dotenv
 FLITT_MERCHANT_ID=your_merchant_id
-FLITT_SECRET=your_secret_key
+FLITT_SECRET_KEY=your_secret_key
 FLITT_CALLBACK_URL=https://yourdomain.ge/flitt/callback
 FLITT_RESPONSE_URL=https://yourdomain.ge
 ```
