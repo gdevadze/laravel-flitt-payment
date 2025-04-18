@@ -16,9 +16,9 @@ class CallbackController extends Controller
 
     public function __invoke(Request $request): JsonResponse
     {
-        if (!in_array($request->ip(), self::ALLOWED_IPS)){
-            abort(404);
-        }
+//        if (!in_array($request->ip(), self::ALLOWED_IPS)){
+//            abort(404);
+//        }
 
         $response = json_decode($request->getContent(), true);
 
