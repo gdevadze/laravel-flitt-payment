@@ -3,7 +3,6 @@
 namespace Devadze\FlittPayment;
 
 use Devadze\FlittPayment\Contracts\PaymentGatewayContract;
-use Devadze\FlittPayment\Models\FlittPaymentTransaction;
 use Devadze\FlittPayment\Traits\BuildPayment;
 
 class FlittPayment extends ApiRequest implements PaymentGatewayContract
@@ -26,11 +25,11 @@ class FlittPayment extends ApiRequest implements PaymentGatewayContract
             $this->logTransactionCreate([
                 'payment_id' => $response['response']['payment_id']
             ]);
-            $this->resetPayload();
-            return $response['response'];
         }
 
-        return $response;
+        $this->resetPayload();
+
+        return $response['response'];
     }
 
     public function token()
@@ -42,10 +41,10 @@ class FlittPayment extends ApiRequest implements PaymentGatewayContract
                 'order_id' => $this->payload['order_id'],
                 'payment_id' => $response['response']['payment_id'] ?? null
             ]);
-            $this->resetPayload();
-            return $response['response'];
         }
 
-        return $response;
+        $this->resetPayload();
+
+        return $response['response'];
     }
 }

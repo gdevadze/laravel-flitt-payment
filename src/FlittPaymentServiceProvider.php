@@ -19,6 +19,8 @@ class FlittPaymentServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
         $this->publishes([
             __DIR__.'/../config/flitt.php' => config_path('flitt.php'),
         ], 'config');

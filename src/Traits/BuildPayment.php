@@ -15,19 +15,13 @@ trait BuildPayment
 
     public function resetPayload($data = null): void
     {
-        $autoGenerate = config('flitt.auto_order_id');
-
-        if ($autoGenerate) {
-            $orderId = uniqid('flitt_', true);
-        } else {
-            $orderId = $this->payload['order_id'] ?? null;
-        }
+        $orderId = uniqid('flitt_', true);
 
         $this->payload = $data ?? [
             'merchant_id' => config('flitt.merchant_id'),
             'currency' => config('flitt.currency'),
             'order_id' => $orderId,
-            'server_callback_url' => config('flitt.callback_url'),
+            'server_callback_url' => ! empty(config('flitt.callback_url')) ? config('flitt.callback_url') : secure_url(route('flitt-payment.callback', [], false)),
             'response_url' => config('flitt.response_url'),
             'lang' => config('flitt.lang'),
             'design_id' => config('flitt.design_id')
@@ -44,11 +38,10 @@ trait BuildPayment
     public function setOrderId(string $orderId): self
     {
         $this->payload['order_id'] = $orderId;
-        $this->orderIdManuallySet = true;
         return $this;
     }
 
-    public function setAmount(int $amount): self
+    public function setAmount(float $amount): self
     {
         $this->payload['amount'] = $amount * 100;
         return $this;

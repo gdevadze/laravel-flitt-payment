@@ -36,11 +36,7 @@ class ApiRequest
         $payload = $arguments[1] ?? [];
 
         $payload['signature'] = $this->generateSignature($payload);
-        $autoGenerate = config('flitt.auto_order_id');
 
-        if (!$autoGenerate && !$payload['order_id']) {
-            throw new \RuntimeException('You must manually set the order_id by calling setOrderId() when FLITT_AUTO_ORDER_ID is false.');
-        }
         try {
             $url = $this->endpoint.$endpoint;
 
