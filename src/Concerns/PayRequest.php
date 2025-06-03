@@ -1,11 +1,11 @@
 <?php
 
-namespace Devadze\FlittPayment\Traits;
+namespace Devadze\FlittPayment\Concerns;
 
 use Devadze\FlittPayment\Models\FlittPaymentTransaction;
 use Illuminate\Database\Eloquent\Model;
 
-trait BuildPayment
+abstract class PayRequest
 {
     protected array $payload;
     protected $model_id = null;

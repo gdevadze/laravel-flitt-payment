@@ -1,13 +1,13 @@
 <?php
 
-namespace Devadze\FlittPayment;
+namespace Devadze\FlittPayment\Concerns;
 
 use Devadze\FlittPayment\Traits\SignatureGenerator;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class ApiRequest
+class ApiRequest extends PayRequest
 {
     use SignatureGenerator;
     protected string $endpoint = 'https://pay.flitt.com/api/';
@@ -36,7 +36,7 @@ class ApiRequest
         $payload = $arguments[1] ?? [];
 
         $payload['signature'] = $this->generateSignature($payload);
-
+//        return $payload;
         try {
             $url = $this->endpoint.$endpoint;
 
