@@ -75,4 +75,19 @@ class FlittPayment extends ApiRequest implements PaymentGatewayContract
 
         return $response['response'];
     }
+
+    public function reversal(): array
+    {
+        unset(
+            $this->payload['server_callback_url'],
+            $this->payload['response_url'],
+            $this->payload['lang'],
+            $this->payload['design_id']
+        );
+        $response = $this->apiRequest->post('reverse/order_id',$this->payload);
+
+        $this->resetPayload();
+
+        return $response['response'];
+    }
 }
